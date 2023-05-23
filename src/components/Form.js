@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Form = () => {
+    const [newItem, setNewItem] = useState('')
     function handleChange(e) {
-        console.log(e.target.value)
+        setNewItem(e.target.value)
     }
     function handleSubmit(e) {
         console.log(e.target.value);

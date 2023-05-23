@@ -6,7 +6,13 @@ import List from './components/List';
 
 
 function App() {
+
   const [data, setData] = useState(DB)
+
+  function addItem() {
+
+  }
+
   return (
     <div className="App">
       <Form></Form>
