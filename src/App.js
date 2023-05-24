@@ -5,18 +5,30 @@ import Form from './components/Form';
 import List from './components/List';
 
 
+
 function App() {
 
   const [data, setData] = useState(DB)
 
-  function addItem() {
+  function addItem(newItem) {
+    setData([
+      ...data,
+      { ...newItem, id: data.length + 1 }
+    ])
+  }
 
+  function deleteItem(id) {
+    setData(data.filter(item => item.id !== id))
+  }
+
+  function editItem(id) {
+    console.log(id)
   }
 
   return (
     <div className="App">
-      <Form></Form>
-      <List data={data}></List>
+      <Form addItem={addItem}></Form>
+      <List data={data} deleteItem={deleteItem} editItem={editItem}></List>
     </div>
   );
 }
