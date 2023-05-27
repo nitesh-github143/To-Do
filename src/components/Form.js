@@ -36,6 +36,7 @@ const Form = ({ addItem, editingItem, updateItem }) => {
                 placeholder='Your Todo'
                 onChange={handleChange}
                 value={newItem.title}
+                className='input-box'
             />
             <button onClick={handleSubmit}>{editingItem ? "Edit" : "Add"}</button>
         </div>

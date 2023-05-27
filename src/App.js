@@ -20,6 +20,13 @@ function App() {
 
   function deleteItem(id) {
     setData(data.filter(item => item.id !== id))
+    ids(id)
+  }
+
+  function ids(x) {
+    for (let i = x; i < data.length; i++) {
+      console.log(data)
+    }
   }
 
   function editItem(id) {
