@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const initialState = { title: "" }
 
-const Form = ({ addItem }) => {
+const Form = ({ addItem, editingItem, updateItem }) => {
 
     const [newItem, setNewItem] = useState(initialState)
 
@@ -14,9 +14,19 @@ const Form = ({ addItem }) => {
     }
 
     function handleSubmit() {
-        addItem(newItem)
+        if (editingItem) {
+            updateItem(newItem)
+        } else {
+            addItem(newItem)
+        }
         setNewItem(initialState)
     }
+
+    useEffect(() => {
+        if (editingItem) {
+            setNewItem(editingItem)
+        }
+    }, [editingItem])
 
     return (
         <div>
@@ -27,7 +37,7 @@ const Form = ({ addItem }) => {
                 onChange={handleChange}
                 value={newItem.title}
             />
-            <button onClick={handleSubmit}>Add</button>
+            <button onClick={handleSubmit}>{editingItem ? "Edit" : "Add"}</button>
         </div>
     )
 }

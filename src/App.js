@@ -9,6 +9,7 @@ import List from './components/List';
 function App() {
 
   const [data, setData] = useState(DB)
+  const [editingItem, setEditingItem] = useState(null)
 
   function addItem(newItem) {
     setData([
@@ -22,12 +23,20 @@ function App() {
   }
 
   function editItem(id) {
-    console.log(id)
+    setEditingItem(data.find(item => item.id === id))
+  }
+
+  function updateItem(item) {
+    const index = data.findIndex(todo => todo.id === item.id)
+    const updatedList = [...data]
+    updatedList.splice(index, 1, item)
+    setData(updatedList)
+    setEditingItem(null)
   }
 
   return (
     <div className="App">
-      <Form addItem={addItem}></Form>
+      <Form addItem={addItem} editingItem={editingItem} updateItem={updateItem}></Form>
       <List data={data} deleteItem={deleteItem} editItem={editItem}></List>
     </div>
   );
