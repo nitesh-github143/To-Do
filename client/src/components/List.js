@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BiEdit } from 'react-icons/bi';
 
-const List = ({ data, deleteItem, editItem }) => {
+const List = ({ data, setData, editItem }) => {
 
     return (
         <div className='list-container'>
@@ -13,7 +13,7 @@ const List = ({ data, deleteItem, editItem }) => {
                             <div>{item.title}</div>
                             <div className="icons">
                                 <div onClick={() => editItem(item.id)}><BiEdit /></div>
-                                <div className='delete-icon' onClick={() => deleteItem(item.id)}><AiOutlineDelete /></div>
+                                <div className='delete-icon' onClick={() => setData(item.id)}><AiOutlineDelete /></div>
                             </div>
                         </div>
                     )
