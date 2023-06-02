@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const initialState = { title: "" }
 
@@ -17,7 +18,8 @@ const Form = ({ addItem, editingItem, updateItem }) => {
         if (editingItem) {
             updateItem(newItem)
         } else {
-            addItem(newItem)
+            addTodo(newItem)
+
         }
         setNewItem(initialState)
     }
@@ -27,6 +29,12 @@ const Form = ({ addItem, editingItem, updateItem }) => {
             setNewItem(editingItem)
         }
     }, [editingItem])
+
+    const addTodo = async (newItem) => {
+        const listItems = await axios.post('http://localhost:4000/todo', newItem)
+        addItem(listItems.data)
+    }
+
 
     return (
         <div>

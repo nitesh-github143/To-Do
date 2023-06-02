@@ -1,20 +1,25 @@
 const fs = require('fs')
-const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
-const lists = data.items
+const model = require('../model/list')
+const Todo = model.Todo
 
-exports.get = (req, res) => {
-    res.status(202).json(lists)
+//get
+exports.get = async (req, res) => {
+    const allTodo = await Todo.find()
+    res.status(202).json(allTodo)
 }
 
-exports.getById = (req, res) => {
-    const id = +req.params.id
-    const item = lists.find(todo => todo.id === id)
-    res.status(202).json(item)
+//get by id
+exports.getById = async (req, res) => {
+    const id = req.params.id
+    const todo = await Todo.findById(id)
+    res.status(202).json(todo)
 }
 
-exports.post = (req, res) => {
-    lists.push(req.body)
-    res.status(201).json()
+//create
+exports.post = async (req, res) => {
+    const todo = new Todo(req.body)
+    await todo.save()
+    res.status(201).json(todo)
 }
 
 exports.put = (req, res) => {
@@ -24,18 +29,17 @@ exports.put = (req, res) => {
     res.status(201).json()
 }
 
-exports.patch = (req, res) => {
-    const id = +req.params.id
-    const item = lists.find(todo => todo.id === id)
-    const oldItem = lists[item]
-    lists.splice(item, 1, { ...oldItem, ...req.body, id: id })
-    res.status(201).json()
+
+//update
+exports.patch = async (req, res) => {
+    const id = req.params.id
+    const doc = await Todo.findOneAndUpdate({ _id: id }, req.body, { new: true })
+    res.status(201).json(doc)
 }
 
-exports.remove = (req, res) => {
-    const id = +req.params.id
-    const item = lists.find(todo => todo.id === id)
-    const oldItem = lists[item]
-    lists.splice(item, 1)
-    res.status(200).json()
+//delete
+exports.remove = async (req, res) => {
+    const id = req.params.id;
+    const doc = await Todo.findOneAndDelete({ _id: id })
+    res.status(201).json(doc);
 }

@@ -1,31 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DB from './Data'
 import Form from './components/Form';
 import List from './components/List';
+import axios from 'axios'
 
 function App() {
 
-  const [data, setData] = useState(DB)
+  const [data, setData] = useState([])
   const [editingItem, setEditingItem] = useState(null)
 
-  function addItem(newItem) {
+  // fetch data from api
+  useEffect(() => {
+    getTodo()
+  }, [])
+
+
+  const getTodo = async () => {
+    const res = await axios.get('http://localhost:4000/todo')
+    setData(res.data)
+  }
+
+
+  const addItem = async (newItem) => {
     setData([
       ...data,
-      { ...newItem, id: data.length + 1 }
+      { ...newItem }
     ])
   }
 
-  function deleteItem(id) {
-    setData(data.filter(item => item.id !== id))
+  const deleteItem = async (id) => {
+    await axios.delete(`http://localhost:4000/todo/${id}`);
+    setData(data.filter((item) => item._id !== id));
+
   }
 
-  function editItem(id) {
-    setEditingItem(data.find(item => item.id === id))
+  const editItem = (id) => {
+    const item = data.find((item) => item._id === id);
+    setEditingItem(item);
   }
 
-  function updateItem(item) {
-    const index = data.findIndex(todo => todo.id === item.id)
+  const updateItem = async (item) => {
+    const res = await axios.patch(`http://localhost:4000/todo/${item._id}`, item)
+    const index = data.findIndex(todo => todo._id === res.data._id)
     const updatedList = [...data]
     updatedList.splice(index, 1, item)
     setData(updatedList)
