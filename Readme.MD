@@ -45,4 +45,4 @@ Technologies used in the project:
 React
 Node
 Express
-MOngoDB
+MongoDB
