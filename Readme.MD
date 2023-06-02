@@ -35,10 +35,6 @@ cd ../backend npm start
 
 cd ../frontend npm start
 
-## Start both the server at the same time using this command
-
-npm run dev
-
 ## Open your web browser and visit http://localhost:3000 to view the Todo app
 
 💻 Built with
