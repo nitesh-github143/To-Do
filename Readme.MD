@@ -11,9 +11,9 @@ Here're some of the project's best features:
 - Delete a task
   
   
-  ##🛠️ Installation Steps:
+  ## 🛠️ Installation Steps:
 
-# Installation
+## Installation
 
 1. Clone the repository: `bash    git clone     `
 
