@@ -9,7 +9,9 @@ Here're some of the project's best features:
 - View the list of tasks
 - Update task
 - Delete a task
-  🛠️ Installation Steps:
+  
+  
+  ## 🛠️ Installation Steps:
 
 ## Installation
 
@@ -43,4 +45,4 @@ Technologies used in the project:
 React
 Node
 Express
-MOngoDB
+MongoDB
