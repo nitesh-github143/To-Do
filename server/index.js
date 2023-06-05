@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
-const database = process.env.DATABASE
+const DATABASE = process.env.DATABASE
 app.use(cors())
 app.use(express.json())
 
@@ -11,7 +11,8 @@ app.use(express.json())
 main().catch(err => console.log(err))
 
 async function main() {
-    await mongoose.connect(database);
+    await mongoose.connect(DATABASE);
+    console.log("connected")
 }
 
 const listRouter = require('./routes/list')
