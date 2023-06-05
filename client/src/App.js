@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import DB from './Data'
 import Form from './components/Form';
 import List from './components/List';
 import axios from 'axios'
