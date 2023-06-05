@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const initialState = { title: "" }
 
-const Form = ({ addItem, editingItem, updateItem }) => {
+const Form = ({ addItem, editingItem, updateItem, BASE_URL }) => {
 
     const [newItem, setNewItem] = useState(initialState)
 
@@ -31,7 +31,7 @@ const Form = ({ addItem, editingItem, updateItem }) => {
     }, [editingItem])
 
     const addTodo = async (newItem) => {
-        const listItems = await axios.post('http://localhost:4000/todo', newItem)
+        const listItems = await axios.post(`${BASE_URL}/todo`, newItem)
         addItem(listItems.data)
     }
 
