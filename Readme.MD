@@ -23,19 +23,21 @@ cd todo-app
 
 ## Install the dependencies for the backend
 
-cd backend npm install
+cd server
+npm install
 
 ## Install the dependencies for the frontend
 
-cd ../frontend npm install
+cd client 
+npm install
 
 ## Start the backend server
 
-cd ../backend npm start
+cd server npm run dev
 
 ## Start the frontend development server
 
-cd ../frontend npm start
+cd client npm start
 
 ## Open your web browser and visit http://localhost:3000 to view the Todo app
 
@@ -46,3 +48,4 @@ React
 Node
 Express
 MongoDB
+Mongoose
